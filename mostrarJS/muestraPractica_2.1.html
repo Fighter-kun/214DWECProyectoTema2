@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!--
+        Descripción: CodigoEjercicio2.1
+        Autor: Carlos García Cachón
+        Fecha de creación/modificación: 01/11/2023
+-->
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Carlos García Cachón">
+        <meta name="description" content="CodigoEjercicio2.1">
+        <meta name="keywords" content="CodigoEjercicio, 2.1">
+        <meta name="generator" content="Apache NetBeans IDE 19">
+        <meta name="generator" content="60">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Carlos García Cachón</title>
+        <link rel="icon" type="image/jpg" href="../webroot/media/images/favicon.ico"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="../webroot/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+        <style>
+            .col {
+                font-size: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="text-center">
+            <h1>SWITCH con 14 ejercicios:</h1>
+        </header>
+        <main>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col">
+                        <pre><code class="language-javascript">
+                            var key = parseInt(prompt("Introduce número del ejercicio entre 1 y 14 o 0 para salir: "));
+                            do {
+                                switch (key) {
+                                    case 1:
+                                        /*1. Crea un script que pida por teclado dos números y genera 10 números aleatorios entre esos números. */
+                                        var n1 = parseInt(prompt("Introduce un número entero: "));
+                                        var n2 = parseInt(prompt("Introduce otro número entero: "));
+                                        while (n1 < n2 || isNaN(n1) || isNaN(n2)) {
+                                            alert("ERROR: Los valores no son correctos.");
+                                            var n1 = parseInt(prompt("Introduce un número entero: "));
+                                            var n2 = parseInt(prompt("Introduce otro número entero: "));
+                                        }
+
+                                        for (let index = 1; index < 11; index++) {
+                                            const numeroAleatorio = Math.floor((Math.random() * (n2 - n1 + 1)) + n1);
+                                            alert("\nRandom número " + index + " : " + numeroAleatorio);
+                                        }
+                                        break;
+
+                                    case 2:
+                                        /*2. Crea un script, que pida al usuario un número. Indicar al usuario si lo que ha introducido, es un número 
+                                         o no, y si es un número, decir si es par o no y si es primo o no.*/
+                                        var n = prompt("Introduce un número:");
+                                        if (!isNaN(n) && Number.isInteger(parseFloat(n))) {
+                                            var primo = true;   //Math.sqrt(n)
+                                            for (let i = 2; i <= n / 2; i++) {
+                                                if (n % i == 0) {
+                                                    primo = false;
+                                                }
+                                            }
+
+                                            if (n % 2 == 0) {
+                                                alert("Es un numero par");
+                                            } else {
+                                                alert("Es un numero impar");
+                                            }
+
+                                            if (primo) {
+                                                alert("Es un numero primo");
+
+                                            } else {
+                                                alert("No es un numero primo");
+                                            }
+
+                                        } else {
+                                            alert("No es un numero");
+
+                                        }
+                                        break
+                                    case 3:
+                                        /*3. Crea un script que pida 2 números al usuario y una operación a realizar (suma, resta, multiplicación o 
+                                         división). En función de esos datos, se debe mostrar el resultado de la operación. Se debe comprobar 
+                                         que los datos introducidos sean números. */
+                                        var n1 = parseFloat(prompt("Introduce un número:"));
+                                        var n2 = parseFloat(prompt("Introduce otro número:"));
+
+                                        if (!isNaN(n1) && !isNaN(n2)) {
+                                            var key = prompt("Que quieres hacer?(sumar/restar/multiplicar/dividir): ");
+                                            switch (key) {
+                                                case "sumar":
+                                                    alert(n1 + n2);
+                                                    break;
+                                                case "restar":
+                                                    alert(n1 - n2);
+                                                    break;
+                                                case "multiplicar":
+                                                    alert(n1 * n2);
+                                                    break;
+                                                case "dividir":
+                                                    if (n1 == 0 && n2 == 0) {
+                                                        alert("No se puede dividir entre 0.")
+                                                    } else {
+                                                        alert(n1 / n2);
+                                                    }
+                                                    break;
+                                                default:
+                                                    alert("Error: Selecciona una de las 4 opciones.");
+                                                    break;
+                                            }
+                                        } else {
+                                            alert("No has introducido 2 números.");
+                                        }
+                                        break
+                                    case 4:
+                                        /*4. Crea un script que pida un número al usuario y muestre todos los números del 1 al 100 que sean 
+                                         divisibles por el número introducido. Se debe controlar que se introduzca un número y que el número 
+                                         este entre 1 y 100.*/
+                                        var n = parseFloat(prompt("Introduce un número (1-100):"));
+                                        if (!isNaN(n) && isFinite(n) && n > 0 && n < 101) {
+                                            for (let i = 1; i <= 100; i++) {
+                                                if (i % n === 0) {
+                                                    alert(n + " es divisible entre " + i);
+                                                }
+                                            }
+                                        } else {
+                                            alert("No has introducido 1 número o estas fuera de rango.");
+                                        }
+                                        break
+                                    case 5:
+                                        /*5. Crea un script que lea números enteros hasta que el usuario introduzca un número 0. Finalmente debe 
+                                         mostrar el número máximo, el mínimo y la media de todos ellos. Debes de controlar que introduzca 
+                                         números y no cualquier otro carácter. */
+                                        var mayor = Number.MIN_SAFE_INTEGER;
+                                        var menor = Number.MAX_SAFE_INTEGER;
+                                        var media = 0;
+                                        var i = 0;
+                                        var acumulador = 0;
+                                        do {
+                                            var n = parseInt(prompt("Introduce un entero (Introduzca 0 si desea salir): "));
+                                            if (!isNaN(n) && isFinite(n) && n !== 0) {
+                                                mayor = Math.max(mayor, n);
+                                                menor = Math.min(menor, n);
+                                                i++
+                                                acumulador += n;
+                                            }
+                                        } while (n !== 0);
+                                        media = acumulador / i;
+                                        alert("El número menor es : " + menor + " ,el número mayor es: " + mayor + " y la media es: " + media);
+
+                                        break
+                                    case 6:
+                                        /*6. Crea un script que pedirá que introduzcas una contraseña 2 veces para evitar errores. A continuación,
+                                         pedirá la contraseña al usuario dándole 3 intentos. Cuando aciertes ya no pedirá más la contraseña y
+                                         mostrará un mensaje diciendo «Enhorabuena». Si no acierta en los 3 intentos, mostrará un mensaje de
+                                         error y terminará.*/
+                                        const pass = prompt("Introduce la contraseña: ");
+                                        for (let intentos = 1; intentos <= 3; intentos++) {
+                                            var pass2 = prompt("Introduce la contraseña: ");
+                                            if (pass == pass2) {
+                                                intentos = 4;
+                                                alert("«Enhorabuena»");
+                                            } else {
+                                                alert("Contraseña erronea, intento " + intentos + " de 3.");
+                                            }
+                                        }
+                                        break;
+                                    case 7:
+                                        /*7. Pide por teclado un número entero positivo (debemos controlarlo) y muestra el número de cifras que
+                                         tiene. Por ejemplo: si introducimos 1250, nos muestre que tiene 4 cifras.*/
+                                        var n = parseInt(prompt("Introduce un entero positivo: "));
+                                        var aux = n;
+                                        if (!isNaN(n) && isFinite(n) && n > 0) {
+                                            var i = 0;
+                                            do {
+                                                n = Math.floor(n / 10);
+                                                i++;
+                                            } while (n != 0);
+                                            alert("El número " + aux + " tiene " + i + " cifras.");
+                                        } else {
+                                            alert("ERROR: Introduce un número positivo o mayor de 0.");
+                                        }
+                                        break;
+                                    case 8:
+                                        /*8. Escribe un script que muestre por pantalla los múltiplos de 2 que hay entre dos números que pides al 
+                                         usuario. El segundo número tiene que ser mayor o igual que el primer número.*/
+                                        var n1 = parseInt(prompt("Introduce un entero positivo: "));
+                                        var n2 = parseInt(prompt("Introduce un entero positivo: "));
+                                        while (n1 > n2 || isNaN(n1) || isNaN(n2) || n1 < 0 || n2 < 0) {
+                                            alert("ERROR: No es valido o el primero es mayor que el segundo.");
+                                            var n1 = parseInt(prompt("Introduce un entero positivo: "));
+                                            var n2 = parseInt(prompt("Introduce un entero positivo: "));
+                                        }
+                                        for (let i = n1; i <= n2; i++) {
+                                            if (i % 2 == 0) {
+                                                alert(i);
+                                            }
+                                        }
+                                        break;
+                                    case 9:
+                                        /*9. Escribe un script que calcule la suma de los números pares y la suma de los números impares 
+                                         comprendidos entre dos números que le pides al usuario. Es decir, el usuario introduce por ejemplo el 
+                                         45 y el 89 y debes de mostrar la suma de los números pares comprendidos entre el 45 y el 89 y por otro 
+                                         lado la suma de los números impares. No contar extremos, es decir, el 45 y el 89 en este caso no se 
+                                         tienen en cuenta.*/
+                                        var n1 = parseInt(prompt("Introduce un entero positivo: "));
+                                        var n2 = parseInt(prompt("Introduce un entero positivo: "));
+                                        while (n1 > n2 || isNaN(n1) || isNaN(n2) || n1 < 0 || n2 < 0) {
+                                            alert("ERROR: No es valido o el primero es mayor que el segundo.");
+                                            var n1 = parseInt(prompt("Introduce un entero positivo: "));
+                                            var n2 = parseInt(prompt("Introduce un entero positivo: "));
+                                        }
+                                        var pares = 0;
+                                        var impares = 0;
+                                        for (let i = n1 + 1; i <= n2 - 1; i++) {
+                                            if (i % 2 == 0) {
+                                                pares += i;
+                                            } else {
+                                                impares += i;
+                                            }
+                                        }
+                                        alert("Suma total de pares: " + pares);
+                                        alert("Suma total de impares: " + impares);
+                                        break;
+                                    case 10:
+                                        /*10. Realiza un script que implemente un juego de encontrar un número aleatorio bajo las siguientes condiciones:
+                                         a. La página calculará un numero aleatorio del 1 al 100.
+                                         b. El usuario dispondrá de 5 intentos para adivinar el número.
+                                         c. Si el usuario escribe algo que no es un número mostrará un mensaje de error y volverá a pedir 
+                                         un número, pero esto no contará como un intento.
+                                         d. Si el usuario acierta el número se le indica al usuario que ha acertado y mediante un cuadro 
+                                         de confirmación se le pregunta si desea volver a jugar o salir.
+                                         e. Si el usuario no acierta con el número, le dirá si el número es mayor o menor que el que ha 
+                                         introducido y le volverá a preguntar por un número.
+                                         f. Si ha llegado al último intento y no ha acertado se le indicará al usuario que ha perdido y 
+                                         mediante un cuadro de confirmación le preguntará si desea volver a jugar o salir.
+                                         g. Si se cancela cualquier cuadro, el juego termina indicando que se canceló el juego.
+                                         h. Cada vez que el usuario termine un juego, se deberá escribir en la página información sobre ese juego:
+                                         1. Juego terminado: SI Número de intentos: 4 Número acertado: SI
+                                         2. Juego terminado: SI Número de intentos: 5 Número acertado: NO
+                                         3. Juego terminado: NO Número de intentos: 2 Número acertado: NO
+                                         */
+                                        var juegos = 0;
+                                        var marcador = "";
+                                        do {
+                                            var numeroAleatorio = Math.floor((Math.random() * (100)) + 1);
+                                            var juegoTerminado = false;
+                                            var juegoGanado = false;
+                                            var intentos = 0;
+
+                                            for (let i = 0; i < 5; i++) {
+                                                var n = prompt("Introduce un entero positivo: ");
+                                                while (isNaN(n) || n < 0 || n > 100) {
+                                                    alert("ERROR: Entrada no válida.");
+                                                    n = prompt("Introduce un entero positivo: ");
+                                                }
+                                                Math.floor(n);
+                                                intentos++;
+                                                if (n != null) {
+                                                    if (numeroAleatorio == n) {
+                                                        alert("Has acertado.");
+                                                        juegoTerminado = true;
+                                                        juegoGanado = true;
+                                                        i = 6;
+                                                    } else if (numeroAleatorio > n) {
+                                                        alert("El número introducido es menor, prueba uno más grande.");
+                                                    } else {
+                                                        alert("El número introducido es mayor, prueba uno más pequeño.");
+                                                    }
+                                                } else {
+                                                    n = numeroAleatorio;
+                                                    i = 6;
+                                                }
+                                            }
+
+                                            if (numeroAleatorio != n) {
+                                                juegoTerminado = true;
+                                                alert("Has perdido, el número era " + numeroAleatorio + " .");
+                                            }
+
+                                            var jg = "";
+                                            if (juegoGanado) {
+                                                jg = "SI";
+                                            } else {
+                                                jg = "NO";
+                                            }
+
+                                            var jt = "";
+                                            if (juegoTerminado) {
+                                                jt = "SI";
+                                            } else {
+                                                jt = "NO";
+                                            }
+                                            juegos++;
+                                            marcador += juegos + ". Juego terminado: " + jt + " Número de intentos: " + intentos + " Número acertado: " + jg + "\n";
+                                            var fin = confirm("Quieres seguir jugando?");
+                                        } while (fin == true);
+                                        alert(marcador);
+                                        break;
+                                    case 11:
+                                        /*11. Crea una aplicación web que pida al usuario un número entero positivo y dibuje triángulos con tantos asteriscos 
+                                         como haya indicado el usuario con el número introducido.*/
+                                        var nAsteriscos = parseInt(prompt("Introduce un entero positivo: "));
+                                        while (isNaN(nAsteriscos) || nAsteriscos < 0) {
+                                            alert("ERROR: Entrada no válida.");
+                                            var nAsteriscos = parseInt(prompt("Introduce un entero positivo: "));
+                                        }
+
+                                        var t1 = '';
+                                        for (let i = 1; i <= nAsteriscos; i++) {
+                                            t1 += '* '.repeat(i) + '<br>';
+                                        }
+
+                                        var t2 = '';
+                                        for (let i = nAsteriscos; i >= 1; i--) {
+                                            t2 += '* '.repeat(i) + '<br>';
+                                        }
+
+                                        var t3 = '';
+                                        for (let i = 1; i <= nAsteriscos; i++) {
+                                            t3 += '&nbsp'.repeat(nAsteriscos - i) + '* '.repeat(i) + '<br>';
+                                        }
+
+                                        var t4 = '';
+                                        for (let i = nAsteriscos; i >= 1; i--) {
+                                            t4 += '&nbsp'.repeat(nAsteriscos - i) + '* '.repeat(i) + '<br>';
+                                        }
+
+                                        document.write("Triángulo 1: " + "<br>" + t1);
+                                        document.write("Triángulo 2: " + "<br>" + t2);
+                                        document.write("Triángulo 3: " + "<br>" + t3);
+                                        document.write("Triángulo 4: " + "<br>" + t4);
+                                        break;
+                                    case 12:
+                                        /*12. Crea una página web que pida al usuario números hasta que el usuario pulse el botón cancelar. Se debe comprobar si lo que inserta el usuario es un 
+                                         número o no. Al finalizar se debe mostrarla suma de todos los números introducidos y en el caso de que se hayan insertado caracteres no 
+                                         numéricos, mostrar también todos los caracteres que se han introducido.*/
+                                        var totaln = 0;
+                                        var noNumerico = [];
+                                        do {
+                                            var n = prompt("Introduce un número: ");
+                                            if (n != null) {
+                                                var aux = parseFloat(n);
+                                                if (!isNaN(aux)) {
+                                                    totaln += aux;
+                                                } else {
+                                                    noNumerico.push(n);
+                                                }
+                                            }
+                                        } while (n != null);
+
+                                        alert("Total Números: " + totaln);
+                                        alert("Total Caracteres: " + noNumerico.join(','));
+                                        break;
+                                    case 13:
+                                        /*13. Crea una página que muestre los primeros 10000 símbolos de la tabla Unicode. Se mostrará en una tabla
+                                         en la que en cada fila se indica el número de código, seguido del carácter de ese código. En cada fila se
+                                         mostrarán 10 símbolos.*/
+                                        document.write("<table>");
+                                        var nsimbolo = 0;
+                                        for (let i = 0; i < 1000; i++) {
+                                            document.write("<tr>");
+                                            for (let j = 0; j < 10; j++, nsimbolo++) {
+                                                document.write("<th>" + nsimbolo + "</th>" + "<td>" + '&#' + nsimbolo + "</td>");
+                                            }
+                                            document.write("</tr>");
+                                        }
+                                        document.write("</table>");
+                                        break;
+                                    case 14:
+                                        /*14. Crea una aplicación web que muestre x cuadrados de color aleatorio de 50x50 píxeles. El número de 
+                                         cuadrados se lo pediremos al usuario. Su posición en la pantalla será también aleatoria. Ejemplo de 
+                                         resultado:*/
+                                        var nVeces = parseInt(prompt("Ingresa un número."));
+                                        for (let i = 0; i < nVeces; i++) {
+                                            var numeroDecimal = Math.floor(Math.random() * 16777215); //Decimal aleatorio
+                                            var numeroHexadecimal = '#' + (numeroDecimal.toString(16).toUpperCase()); //Construimos el número hexadecimal, junto a los decimales de arriba y añadimos '#' y las letras.
+
+                                            document.write("<div style='background-color:" + numeroHexadecimal + "; position: absolute; top: " + Math.random() * window.innerHeight + "px; left: " + Math.random() * window.innerWidth + "px; width: 50px; height: 50px;'></div>");
+                                        }
+                                        break;
+                                    case 0:
+                                        alert("Hasta luego.");
+                                        break;
+                                }
+                                if (key != 0) {
+                                    var key = parseInt(prompt("Introduce número del ejercicio entre 1 y 14 o 0 para salir: "));
+                                }
+                            } while (key != 0);
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="position-fixed bottom-0 end-0">
+            <div class="row text-center">
+                <div class="footer-item">
+                    <address>© <a href="../../index.html" style="color: white; text-decoration: none; background-color: #666">Carlos García Cachón</a>
+                        IES LOS SAUCES 2023-24 </address>
+                </div>
+                <div class="footer-item">
+                    <a href="../indexProyectoTema2.html" style="color: white; text-decoration: none; background-color: #666">Inicio</a>
+                </div>
+                <div class="footer-item">
+                    <a href="https://github.com/Fighter-kun?tab=repositories" target="_blank"><img
+                            src="../webroot/media/images/github.png" alt="LogoGitHub" class="pe-5"/></a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html>
